@@ -33,7 +33,7 @@ void followWall() {
 			// If we're too close, turn to the left.
 			mav(LMOTOR, -200);
 			mav(RMOTOR, 300);
-		} else if(d == FAR) {
+		} else {
 			// If we're too far, turn to the right.
 			mav(LMOTOR, 300);
 			mav(RMOTOR, -200);
