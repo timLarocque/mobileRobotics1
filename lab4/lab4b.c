@@ -27,28 +27,29 @@ int main() {
 void followWall() {
 	// Press the black button on the CBC to terminate the program.
 	while(!black_button()) {
+		// If we've collided with something, turn away
+		collisionDetection();
+
 		// Get the distance reading from the sensor.
 		int reading = analog10(SENSOR);
 
-		// Use the enumerator to determine if this range is too close, too far, or just right.
-		distance d = range(reading);
+		// if the reading is too large, normalize
+		if (reading > 1000) reading = 1000;
 
-		if(d == CLOSE) {
-			// If we're too close, turn to the right.
-			mav(LMOTOR, -500);
-			mav(RMOTOR, 600);
-		} else if(d == FAR) {
-			// If we're too far, turn to the left.
-			mav(LMOTOR, 600);
-			mav(RMOTOR, -500);
-		}
+		// lower readings means we're further away, turn towards the wall
+		int leftValue = 1000 - reading;
+		// higher readings means closer to wall, turn away
+		int rightValue = reading;
+
+		mav(LMOTOR, leftValue);
+		mav(RMOTOR, rightValue);
 	}
 }
 
 distance range(int reading) {
 	// A high value indicates a closer object and a low value indicates a far object.
-	if(reading >= 600) return CLOSE; // May need to change this... max value is 1023, and if it gets that close, it will start to go down again because of that 4 inch buffer.
-	else if(reading < 600) return FAR; // Seems to work okay.
+	if(reading >= 700) return CLOSE; // May need to change this... max value is 1023, and if it gets that close, it will start to go down again because of that 4 inch buffer.
+	else if(reading <= 400) return FAR; // Seems to work okay.
 }
 
 void collisionDetection() {
