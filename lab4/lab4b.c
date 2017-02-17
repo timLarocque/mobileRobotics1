@@ -3,6 +3,9 @@
 #define LMOTOR 3
 #define RMOTOR 0
 
+#define LBUMP 10
+#define RBUMP 8
+
 #define SENSOR 0
 
 // Enumerator to denote how far the robot is from the wall.
@@ -10,6 +13,7 @@ typedef enum distance { CLOSE, FAR } distance;
 
 void followWall();
 distance range(int reading);
+void collisionDetection();
 
 int main() {
 	followWall();
