@@ -30,19 +30,19 @@ void followWall() {
 		distance d = range(reading);
 
 		if(d == CLOSE) {
-			// If we're too close, turn to the left.
-			mav(LMOTOR, -500);
-			mav(RMOTOR, 600);
-		} else {
-			// If we're too far, turn to the right.
-			mav(LMOTOR, 600);
-			mav(RMOTOR, -500);
+			// If we're too close, turn to the right.
+			mav(LMOTOR, -200);
+			mav(RMOTOR, 300);
+		} else if(d == FAR) {
+			// If we're too far, turn to the left.
+			mav(LMOTOR, 300);
+			mav(RMOTOR, -200);
 		}
 	}
 }
 
 distance range(int reading) {
 	// A high value indicates a closer object and a low value indicates a far object.
-	if(reading >= 600) return CLOSE; // May need to change this... max value is 1023, and if it gets that close, it will start to go down again because of that 4 inch buffer.
+	if(reading >= 1000) return CLOSE; // May need to change this... max value is 1023, and if it gets that close, it will start to go down again because of that 4 inch buffer.
 	else if(reading <= 600) return FAR; // Seems to work okay.
-}
+., }
