@@ -43,8 +43,8 @@ void followWall() {
 
 distance range(int reading) {
 	// A high value indicates a closer object and a low value indicates a far object.
-	if(reading >= 1000) return CLOSE; // May need to change this... max value is 1023, and if it gets that close, it will start to go down again because of that 4 inch buffer.
-	else if(reading <= 600) return FAR; // Seems to work okay.
+	if(reading >= 600) return CLOSE; // May need to change this... max value is 1023, and if it gets that close, it will start to go down again because of that 4 inch buffer.
+	else if(reading < 600) return FAR; // Seems to work okay.
 }
 
 void collisionDetection() {
