@@ -18,9 +18,9 @@ void collisionDetection();
 int main() {
 	followWall();
 	ao();
-	
+
 	printf("Program terminated...\n");
-	
+
 	return 0;
 }
 
@@ -29,13 +29,13 @@ void followWall() {
 	while(!black_button()) {
 		// If we've collided with something, turn 90 degrees to the left.
 		collisionDetection();
-		
+
 		// Get the distance reading from the sensor.
 		int reading = analog10(SENSOR);
-		
+
 		// Use the enumerator to determine if this range is too close, too far, or just right.
 		distance d = range(reading);
-		
+
 		if(d == CLOSE) {
 			// If we're too close, turn to the right.
 			mav(LMOTOR, -200);
@@ -64,13 +64,13 @@ void collisionDetection() {
 	if(digital(LBUMP) || digital(RBUMP)) {
 		ao();
 		msleep(50);
-		
+
 		// Back up a bit.
 		mav(LMOTOR, -300);
 		mav(RMOTOR, -300);
 		msleep(100);
 		ao();
-		
+
 		// Turn 90 degrees left.
 		mav(LMOTOR, -500);
 		mav(RMOTOR, 500);
