@@ -1,5 +1,10 @@
 # Mobile Robotics 1
-### Spring 2017
 
+### Programmers
 Darin Beaudreau
+
 Tim Larocque
+
+
+All sub-repositories are Weekly Lab Projects and the Final Project for the
+Mobile Robotics 1 course at UMass Lowell. 
