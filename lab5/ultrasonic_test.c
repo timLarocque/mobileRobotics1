@@ -5,7 +5,7 @@
 #define RMOTOR 0
 #define SENSOR 0
 
-#define DEGREE_45 750 // A 45 degree turn with both motors at opposing values of 500 takes approximately 750 ms.
+#define DEGREE 500
 
 int positions[] = { 700, 1000, 1300, 1600, 1900 }; // Use these five positions to take readings.
 
@@ -27,7 +27,7 @@ int main() {
 		for(i = 0; i < 5; i++) {
 			set_servo_position(SERVO, positions[i]);
 			
-			msleep(750); // Wait for the signal to return.
+			msleep(250); // Wait for the signal to return.
 			int value = analog10(SENSOR);
 			printf("Reading %d : %d\n", i, value);
 			if(value > max) {
@@ -63,7 +63,7 @@ void turnTowards(int value) {
 	}
 	
 	int orient = value - 2; // Where is this value in relation to the center orientation?
-	int delay = ((orient < 0)?-orient:orient) * DEGREE_45;
+	int delay = ((orient < 0)?-orient:orient) * DEGREE;
 	
 	mav(LMOTOR, ((orient < 0)?-500:500));
 	mav(RMOTOR, ((orient < 0)?500:-500));
