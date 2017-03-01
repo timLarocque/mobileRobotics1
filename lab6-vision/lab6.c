@@ -1,9 +1,6 @@
-// Created on Wed Mar 1 2017
-
 #include <stdio.h>
 
-int main() 
-{
-	printf("Hello, World!\n");
+int main() {
+	printf("Hello, world!\n");
 	return 0;
 }
