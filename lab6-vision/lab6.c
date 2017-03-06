@@ -38,7 +38,7 @@ void seekObject() {
 	while(!black_button()) {
 		track_update();
 		// Look for a blob on channel 0 (our pre-defined red channel) big enough to be the ball.
-		if(track_size(0, 0) > (40 * 40)) {
+		if(track_size(0, 0) > (10 * 10)) {
 			// There is a blob on screen big enough to be our ball. Follow it.
 			followObject();
 		} else {
@@ -64,7 +64,7 @@ void followObject() {
 	mav(RMOTOR, (1000 - nx));
 	
 	// Is the blob close to the robot?
-	if(track_y(0, 0) > 80) {
+	if(track_y(0, 0) > 90) {
 		// If so, kick it away!
 		kick();
 	}
