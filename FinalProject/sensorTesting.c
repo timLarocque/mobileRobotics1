@@ -3,8 +3,8 @@
 #define LANCE 1
 #define SHIELD 8
 
-#define LHAT 0
-#define RHAT 1
+#define RHAT 0
+#define LHAT 1
 
 #define RMOTOR 0
 #define LMOTOR 3
