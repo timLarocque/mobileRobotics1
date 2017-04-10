@@ -1,10 +1,10 @@
-##Mobile Robotics Final Project
-###Robot Jousting
+## Mobile Robotics Final Project
+### Robot Jousting
 
-####Team Razzle Frazzle
+#### Team Razzle Frazzle
 Darin Beaudreau
 Tim Larocque
 
-####Team Velmer
+#### Team Velmer
 Victoria Albanese
 Elmer Melendez
