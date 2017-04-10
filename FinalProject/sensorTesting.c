@@ -24,7 +24,14 @@ int main()
 			// turn right a little
 			mav(LMOTOR, 500);
 			mav(RMOTOR, -300);
-		} else if {
+		} else if (analog10(LHAT) > 500 && analog10(RHAT) > 500) {
+			// go backwards
+			mrp(0, 200, 500);
+			mrp(3, 200, -500);
+	
+			// turn left a lot
+			mrp(0, 250, -800);
+			mrp(3, 250, -800);
 		}else {
 			// keep moving forward
 			mav(LMOTOR, 300);
