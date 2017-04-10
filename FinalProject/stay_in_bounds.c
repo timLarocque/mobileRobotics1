@@ -38,15 +38,11 @@ int main()
 		// if black is detected on left side, veer right
 		if (analog10(LHAT) > 500) { 
 			avoid_border_left();
-			//mav(LMOTOR, 800);
-			//mav(RMOTOR, -800);
 		} 
 		
 		// if black is detected on right side, veer left
 		if (analog10(RHAT) > 500) { 
 			avoid_border_right();
-			//mav(RMOTOR, 800);
-			//mav(LMOTOR, -800);
 		}
 				
 	}	
@@ -54,6 +50,7 @@ int main()
 	return 0;
 }
 
+// not yet working
 void collisionDetection() {
 	
 	if(digital(SHIELD)) {
