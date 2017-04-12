@@ -1,6 +1,7 @@
 // Created on Wed Apr 12 2017
 
 #include "offensiveStyle.h"
+#include "offensiveStyle.c"
 
 int main() {
 

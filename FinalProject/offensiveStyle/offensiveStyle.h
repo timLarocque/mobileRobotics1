@@ -1,10 +1,10 @@
 // Created on Wed Apr 12 2017
 
-#ifndef __OFFENSIVE_H__
-#define __OFFENSIVE_H__
+#ifndef OFFENSIVE_STYLE_H
+#define OFFENSIVE_STYLE_H
 
+// include statements
 #include <stdio.h>
-#include "offensiveStyle.c"
 
 // defining all of the sensors
 #define LMOTOR 3

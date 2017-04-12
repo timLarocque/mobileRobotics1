@@ -1,5 +1,8 @@
 #include "offensiveStyle.h"
 
+#ifndef OFFENSIVE_STYLE_C
+#define OFFENSIVE_STYLE_C
+
 // Find Shield Function
 // ARGUMENTS: none
 //   RETURNS: shield structure
@@ -21,7 +24,7 @@ Shield findShield() {
 }
 
 void approachShield() {
-
+	/*
 	while(!black_button()) {
 
 		// find the shield
@@ -51,7 +54,7 @@ void approachShield() {
 		}			
 
 	}
-																																																																						
+	*/																																																																					
 	return;
 
 }
@@ -63,3 +66,5 @@ void collisionDetection() {
 void moveLance() {
 	
 }
+
+#endif
