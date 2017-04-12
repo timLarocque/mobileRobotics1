@@ -6,10 +6,14 @@
 int main() {
 
 	Shield target = findShield();
-	printf(" X Centroid : %d", target.xCentroid);
-	printf(" Y Centroid : %d", target.yCentroid);
-	printf("Shield Size : %d", target.size);
-
+	printf(" X Centroid : %d\n", target.xCentroid);
+	printf(" Y Centroid : %d\n", target.yCentroid);
+	printf("Shield Size : %d\n", target.size);
+	
+	while(!black_button()) {
+		approachShield();	
+	}
+	
 	return 0;
 	
 }

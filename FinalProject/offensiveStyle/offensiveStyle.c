@@ -24,37 +24,45 @@ Shield findShield() {
 }
 
 void approachShield() {
-	/*
-	while(!black_button()) {
-
-		// find the shield
-		Shield target = findShield();
-						
-		// if the centroid of the color blob 
-		// is to the left of the center of the screen
-		// turn right
-		if (target.xCentroid < 75) {
-			mav(RMOTOR, 200);
-			mav(LMOTOR, -200);
-		}
-																											
-		// if the centroid of the color blob
-		// is to the right of the center of the screen
-		// turn left
-		else if (target.xCentroid > 85) {
-			mrp(RMOTOR, -200);
-			mrp(LMOTOR, 200);
-		}
-																																																	
-		// otherwise, if the centroid of the color blob
-		// is centered with respect to the screen
-		// beep
-		else {
-			beep();
-		}			
-
+	
+	// find the shield
+	Shield target = findShield();
+	do {
+		target = findShield();
+		mav(RMOTOR, 100);
+		mav(LMOTOR, -100);
+	} while (target.size < 200);
+	
+	//mav(LMOTOR, (target.xCentroid * 31));
+	//mav(RMOTOR, (500 - (target.xCentroid * 31)));
+		
+	// if the centroid of the color blob 
+	// is to the left of the center of the screen
+	// turn right
+	if (target.xCentroid < 75) {
+		mav(RMOTOR, -200);
+		mav(LMOTOR, 200);
+		msleep(100);
 	}
-	*/																																																																					
+																										
+	// if the centroid of the color blob
+	// is to the right of the center of the screen
+	// turn left
+	else if (target.xCentroid > 85) {
+		mav(RMOTOR, 200);
+		mav(LMOTOR, -200);
+		msleep(100);
+	}
+																																															
+	// otherwise, if the centroid of the color blob
+	// is centered with respect to the screen
+	// beep
+	else {
+		mav(RMOTOR, 200);
+		mav(LMOTOR, -200);
+		msleep(100);
+	}			
+					
 	return;
 
 }
