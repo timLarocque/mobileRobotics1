@@ -4,11 +4,11 @@
 ### Programmers:
 
 #### Team Razzle Frazzle
-Darin Beaudreau
+Darin Beaudreau &
 Tim Larocque
 
 #### Team Velmer
-Victoria Albanese
+Victoria Albanese & 
 Elmer Melendez
 
 ### Opportunity Statement
@@ -53,4 +53,4 @@ strikes the shield, it will trigger the limit sensor. This will allow us to
 determine when the round is over.
 
 ### Our Tentative Work Plan
-![WorkPlan](/WorkPlan.png?raw=true "WorkPlan")
+![workPlan](/workPlan.png?raw=true "workPlan")
