@@ -3,9 +3,13 @@
 
 ### Programmers:
 
-#### Team Razzle Frazzle           Team Velmer
-Darin Beaudreau                Victoria Albanese
-Tim Larocque                   Elmer Melendez
+#### Team Razzle Frazzle
+Darin Beaudreau
+Tim Larocque
+
+#### Team Velmer
+Victoria Albanese
+Elmer Melendez
 
 ### Opportunity Statement
 For our final project, we are implementing a robotic version of the medieval
@@ -43,7 +47,10 @@ does not go outside the “lists”, which are the barriers on the outside of th
 - USB camera - we will use the camera to detect blobs of color corresponding to
 the color of the opponent’s shield and its position so that we can move toward
 the opponent and position the lance to strike their shield.
-- Limit Sensor - we need a method to detect when the robot’s shield has been struck. 
+- Limit Sensor - we need a method to detect when the robot’s shield has been struck.
 We will attach the shield to the limit sensor that when the opponent’s lance
 strikes the shield, it will trigger the limit sensor. This will allow us to
 determine when the round is over.
+
+### Our Tentative Work Plan
+![WorkPlan](/WorkPlan.png?raw=true "WorkPlan")
