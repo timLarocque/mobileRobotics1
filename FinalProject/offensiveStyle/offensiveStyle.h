@@ -23,8 +23,8 @@ typedef struct {
 } Shield;
 
 // function declarations
+Shield findShield();
 void approachShield();
-void findShield();
 void collisionDetection();
 void moveLance();
 
