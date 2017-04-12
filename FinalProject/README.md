@@ -53,4 +53,4 @@ strikes the shield, it will trigger the limit sensor. This will allow us to
 determine when the round is over.
 
 ### Our Tentative Work Plan
-![workPlan](/workPlan.png?raw=true "workPlan")
+![workPlan](/WorkPlan.png?raw=true "workPlan")
