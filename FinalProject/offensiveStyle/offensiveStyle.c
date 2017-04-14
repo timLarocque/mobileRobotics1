@@ -24,27 +24,42 @@ Shield findShield() {
 }
 
 void approachShield() {
-	NormalizedSpeed norm;
 	
-	// find the shield
-	Shield target = findShield();
-	do {
-		target = findShield();
-		mav(RMOTOR, 100);
-		mav(LMOTOR, -100);
-	} while (target.size < 50);
-	
-	norm = normalize(target);
-	mav(LMOTOR, norm.left);
-	mav(RMOTOR, norm.right);
-	return;
+	while (!black_button()) {
+		
+		// find the shield
+		Shield target = findShield();
+		
+		// if the sheild is offscreen, turn right
+		if (target.size < 50) {	
+			target = findShield();
+			mav(RMOTOR, 100);
+			mav(LMOTOR, -100);
+		}
+		
+		// otherwise, approach the shield
+		else {
+			NormalizedSpeed norm;
+			norm = normalize(target);
+			mav(LMOTOR, norm.left);
+			mav(RMOTOR, norm.right);
+			printf("xlocation : %d\n", target.xCentroid);
+			printf("left motor: %d\n", norm.left);
+			printf("left motor: %d\n", norm.right);
+		}
+		
+	}
 
 }
 
 NormalizedSpeed normalize(Shield target) {
+	
 	NormalizedSpeed temp;
-	temp.left = (int)(target.xCentroid * 2.5);
-	temp.right = (int)(400 - (target.xCentroid * 2.5));
+	temp.left = (int)(((double)target.xCentroid / 160.0) * 1000.0);
+	temp.right = (int)(1000 - (((double)target.xCentroid / 160.0) * 1000.0));
+		
+	return temp;
+
 }
 
 void collisionDetection() {
