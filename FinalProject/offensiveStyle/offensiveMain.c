@@ -4,13 +4,11 @@
 #include "offensiveStyle.c"
 
 int main() {
-
-	Shield target = findShield();
-	printf(" X Centroid : %d\n", target.xCentroid);
-	printf(" Y Centroid : %d\n", target.yCentroid);
-	printf("Shield Size : %d\n", target.size);
-	
 	while(!black_button()) {
+		Shield target = findShield();
+		printf(" X Centroid : %d\n", target.xCentroid);
+		printf(" Y Centroid : %d\n", target.yCentroid);
+		printf("Shield Size : %d\n\n", target.size);
 		approachShield();	
 	}
 	

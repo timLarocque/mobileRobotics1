@@ -22,10 +22,16 @@ typedef struct {
 	int size;
 } Shield;
 
+typedef struct {
+	int left;
+	int right;
+} NormalizedSpeed;
+
 // function declarations
 Shield findShield();
 void approachShield();
 void collisionDetection();
 void moveLance();
+NormalizedSpeed normalize(Shield target);
 
 #endif

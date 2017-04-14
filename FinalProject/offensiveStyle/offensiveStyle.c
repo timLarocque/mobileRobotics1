@@ -24,6 +24,7 @@ Shield findShield() {
 }
 
 void approachShield() {
+	NormalizedSpeed norm;
 	
 	// find the shield
 	Shield target = findShield();
@@ -31,40 +32,19 @@ void approachShield() {
 		target = findShield();
 		mav(RMOTOR, 100);
 		mav(LMOTOR, -100);
-	} while (target.size < 200);
+	} while (target.size < 50);
 	
-	//mav(LMOTOR, (target.xCentroid * 31));
-	//mav(RMOTOR, (500 - (target.xCentroid * 31)));
-		
-	// if the centroid of the color blob 
-	// is to the left of the center of the screen
-	// turn right
-	if (target.xCentroid < 75) {
-		mav(RMOTOR, -200);
-		mav(LMOTOR, 200);
-		msleep(100);
-	}
-																										
-	// if the centroid of the color blob
-	// is to the right of the center of the screen
-	// turn left
-	else if (target.xCentroid > 85) {
-		mav(RMOTOR, 200);
-		mav(LMOTOR, -200);
-		msleep(100);
-	}
-																																															
-	// otherwise, if the centroid of the color blob
-	// is centered with respect to the screen
-	// beep
-	else {
-		mav(RMOTOR, 200);
-		mav(LMOTOR, -200);
-		msleep(100);
-	}			
-					
+	norm = normalize(target);
+	mav(LMOTOR, norm.left);
+	mav(RMOTOR, norm.right);
 	return;
 
+}
+
+NormalizedSpeed normalize(Shield target) {
+	NormalizedSpeed temp;
+	temp.left = (int)(target.xCentroid * 2.5);
+	temp.right = (int)(400 - (target.xCentroid * 2.5));
 }
 
 void collisionDetection() {
