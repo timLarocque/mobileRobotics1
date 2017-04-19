@@ -14,9 +14,9 @@ Shield findShield() {
 	
 	// make new shieled, update fields
 	Shield target;
-	target.xCentroid = track_x(GREEN, 0);
-	target.yCentroid = track_y(GREEN, 0);
-	target.size = track_size(GREEN, 0);
+	target.xCentroid = track_x(RED, 0);
+	target.yCentroid = track_y(RED, 0);
+	target.size = track_size(RED, 0);
 
 	// return updated shield
 	return target;
@@ -42,8 +42,8 @@ void approachShield() {
 	else {
 		NormalizedSpeed norm;
 		norm = normalize(target);
-		mav(LMOTOR, norm.left);		// offense uses LMOTOR
-		mav(RMOTOR, norm.right);	// offense uses RMOTOR
+		mav(RMOTOR, norm.left);		// defense uses RMOTOR
+		mav(LMOTOR, norm.right);	// defense uses LMOTOR
 	}
 		
 }
