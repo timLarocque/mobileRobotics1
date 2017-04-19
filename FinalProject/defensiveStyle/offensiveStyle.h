@@ -13,7 +13,7 @@
 #define LANCE 1
 #define LHAT 1
 #define RHAT 0
-#define GREEN 1
+#define RED 0
 
 // Shield detection structure
 typedef struct {
