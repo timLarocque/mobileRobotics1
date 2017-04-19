@@ -10,8 +10,8 @@
 #define RED 0
 #define GREEN 1
 
-#define LANCE_MIN 400
-#define LANCE_RANGE 1000
+#define LANCE_MIN 600
+#define LANCE_RANGE 800
 
 /**
  * Distance milestones between camera and opponent shield.
@@ -29,7 +29,7 @@
 
 int main() {
 	enable_servos();
-	set_servo_position(LANCE, (LANCE_MIN + 300));
+	set_servo_position(LANCE, (LANCE_MIN + (LANCE_RANGE / 2)));
 	
 	while(!black_button()) {
 		if(digital(SHIELD)) {
@@ -43,14 +43,12 @@ int main() {
 		if(count > 0) {
 			// Get the size of the blob and its position.
 			Shield shield;
-			shield.size = track_size(0, 0);
+			shield.size = track_size(RED, 0);
 			shield.x = track_x(RED, 0);
 			shield.y = track_y(RED, 0);
 			
-			aimLance(shield);
-			
 			// Normalize the x value to see how far across the screen it is.
-			int normalized = (int)(((double)shield.x / 160.0) * 500);
+			int normalized = (int)(((double)shield.x / 160.0) * 500); // max speed should be 500
 				
 			if(shield.size >= 300) {
 				// We're in defense range! Run away!
@@ -59,6 +57,7 @@ int main() {
 				int right = normalized;
 				mav(LMOTOR, left);
 				mav(RMOTOR, right);
+				aimLance(shield);
 			} else if(shield.size >= 50) {
 				// Pursuit range! Get over here, you cheeky little sh-
 				printf("In pursuit range!\n");
@@ -66,6 +65,7 @@ int main() {
 				int right = 500 - normalized;
 				mav(LMOTOR, left);
 				mav(RMOTOR, right);
+				aimLance(shield);
 			}
 		} else {
 			// Turn right until we find it again?
@@ -79,5 +79,7 @@ int main() {
 
 void aimLance(Shield shield) {
 	int normalized = (int)(((double)shield.x / 160.0) * (LANCE_RANGE - shield.size)) + LANCE_MIN;
+	if(normalized < LANCE_MIN) normalized = LANCE_MIN;
+	else if(normalized > (LANCE_MIN + LANCE_RANGE)) normalized = LANCE_MIN + LANCE_RANGE;
 	set_servo_position(LANCE, normalized);
 }
