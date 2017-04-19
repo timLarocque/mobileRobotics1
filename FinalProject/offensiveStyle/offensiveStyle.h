@@ -30,8 +30,11 @@ typedef struct {
 // function declarations
 Shield findShield();
 void approachShield();
-void collisionDetection();
+void acceptDefeat();
 void moveLance();
 NormalizedSpeed normalize(Shield target);
+void avoid_border_left();
+void avoid_border_right();
+
 
 #endif
