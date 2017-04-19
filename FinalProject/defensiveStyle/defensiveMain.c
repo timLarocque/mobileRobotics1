@@ -1,7 +1,7 @@
 // Created on Wed Apr 12 2017
 
-#include "offensiveStyle.h"
-#include "offensiveStyle.c"
+#include "defensiveStyle.h"
+#include "defensiveStyle.c"
 
 int main() {
 	
@@ -32,5 +32,4 @@ int main() {
 	}
 	
 	return 0;
-	
 }

@@ -1,7 +1,7 @@
 // Created on Wed Apr 12 2017
 
-#ifndef OFFENSIVE_STYLE_H
-#define OFFENSIVE_STYLE_H
+#ifndef DEFENSIVE_STYLE_H
+#define DEFENSIVE_STYLE_H
 
 // include statements
 #include <stdio.h>

@@ -1,85 +1,125 @@
-#define LMOTOR 3
-#define RMOTOR 0
+#include "defensiveStyle.h"
 
-#define LANCE 1
-#define SHIELD 8
+#ifndef DEFENSIVE_STYLE_C
+#define DEFENSIVE_STYLE_C
 
-#define LHAT 1
-#define RHAT 0
+// Find Shield Function
+// ARGUMENTS: none
+//   RETURNS: shield structure
+//   PURPOSE: return a struct containing updated position/size of shield
+Shield findShield() {
 
-#define RED 0
-#define GREEN 1
-
-#define LANCE_MIN 600
-#define LANCE_RANGE 800
-
-/**
- * Distance milestones between camera and opponent shield.
- * 1200 -> bots are right up in each other's business
- * 900 -> bots are fairly close. Too close to start turning away. Attack!
- * 600 -> medium distance. Start turning away to defend!
- * 200 -> bot is pretty far away. Pursue it!
- **/
- 
- typedef struct {
-	int x, y, size; 
- } Shield;
- 
- void aimLance(Shield shield);
-
-int main() {
-	enable_servos();
-	set_servo_position(LANCE, (LANCE_MIN + (LANCE_RANGE / 2)));
+	// update the image
+	track_update();
 	
-	while(!black_button()) {
-		if(digital(SHIELD)) {
-			beep();
-			printf("Blargh, I'm dead!\n");
-			break;
-		}
-		
-		track_update();
-		int count = track_count(0);
-		if(count > 0) {
-			// Get the size of the blob and its position.
-			Shield shield;
-			shield.size = track_size(RED, 0);
-			shield.x = track_x(RED, 0);
-			shield.y = track_y(RED, 0);
-			
-			// Normalize the x value to see how far across the screen it is.
-			int normalized = (int)(((double)shield.x / 160.0) * 500); // max speed should be 500
-				
-			if(shield.size >= 300) {
-				// We're in defense range! Run away!
-				printf("In defense range!\n");
-				int left = 500 - normalized;
-				int right = normalized;
-				mav(LMOTOR, left);
-				mav(RMOTOR, right);
-				aimLance(shield);
-			} else if(shield.size >= 50) {
-				// Pursuit range! Get over here, you cheeky little sh-
-				printf("In pursuit range!\n");
-				int left = normalized;
-				int right = 500 - normalized;
-				mav(LMOTOR, left);
-				mav(RMOTOR, right);
-				aimLance(shield);
-			}
-		} else {
-			// Turn right until we find it again?
-			mav(LMOTOR, 200);
-			mav(RMOTOR, -200);
-		}
+	// make new shieled, update fields
+	Shield target;
+	target.xCentroid = track_x(RED, 0);
+	target.yCentroid = track_y(RED, 0);
+	target.size = track_size(RED, 0);
+
+	// return updated shield
+	return target;
+	
+}
+
+void approachShield() {
+
+	// find the shield
+	Shield target = findShield();
+	
+	// move lance
+	moveLance();		
+	
+	// if the shield is offscreen, go forward
+	if (target.size < 50) {	
+		target = findShield();
+		mav(RMOTOR, 100);
+		mav(LMOTOR, 100);
 	}
 	
-	disable_servos();
+	// otherwise, approach the shield
+	else {
+		NormalizedSpeed norm;
+		norm = normalize(target);
+		mav(RMOTOR, norm.left);		// defense uses RMOTOR
+		mav(LMOTOR, norm.right);	// defense uses LMOTOR
+	}
+		
 }
 
-void aimLance(Shield shield) {
-	int normalized = (int)(((double)shield.x / 160.0) * (LANCE_RANGE - shield.size)) + LANCE_MIN;
-	if(normalized < LANCE_MIN) normalized = LANCE_MIN;
-	else if(normalized > (LANCE_MIN + LANCE_RANGE)) normalized = LANCE_MIN + LANCE_RANGE;
-	set_servo_position(LANCE, normalized);
+NormalizedSpeed normalize(Shield target) {
+	
+	NormalizedSpeed temp;
+	temp.left = (int)(((double)target.xCentroid / 160.0) * 1000.0);
+	temp.right = (int)(1000 - (((double)target.xCentroid / 160.0) * 1000.0));
+		
+	return temp;
+
 }
+
+void acceptDefeat() {
+	
+	// beep a few times in pain
+	beep();
+	beep();
+	beep();
+	
+	// curve left/backwards
+	mrp(RMOTOR, 1000, -800);
+	mrp(LMOTOR, 1000, -800);
+	bmd(RMOTOR);
+	bmd(LMOTOR);
+	
+	// turn left a lot to face away from opponent
+	mrp(RMOTOR, 1000, 800);
+	mrp(LMOTOR, 1000, -800);
+	bmd(RMOTOR);
+	bmd(LMOTOR);
+
+	while(!black_button()) {
+			ao();
+	}
+	
+}
+
+void moveLance() {
+			
+	set_servo_position(LANCE, 1020);
+	msleep(100);
+	set_servo_position(LANCE, 1080);
+	msleep(100);
+	
+}
+
+void avoid_border_left() {
+	
+	mrp(RMOTOR, 500, -500);
+	mrp(LMOTOR, 500, -500);
+
+	bmd(LMOTOR);
+	bmd(RMOTOR);
+
+	mrp(LMOTOR, 500, 400); 
+	bmd(LMOTOR);
+	
+	return;
+	
+}
+
+void avoid_border_right() {
+	
+	mrp(RMOTOR, 500, -500);
+	mrp(LMOTOR, 500, -500);
+
+	bmd(LMOTOR);
+	bmd(RMOTOR);
+			
+	mrp(RMOTOR, 500, 400); 
+	bmd(RMOTOR);
+	
+	return;
+	
+}
+
+#endif
