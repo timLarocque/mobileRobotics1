@@ -3,6 +3,9 @@
 #ifndef DEFENSIVE_STYLE_C
 #define DEFENSIVE_STYLE_C
 
+#define LANCE_MIN 600
+#define LANCE_RANGE 800
+
 // Find Shield Function
 // ARGUMENTS: none
 //   RETURNS: shield structure
@@ -23,13 +26,13 @@ Shield findShield() {
 	
 }
 
-void approachShield() {
+void avoidShield() {
 
 	// find the shield
 	Shield target = findShield();
 	
 	// move lance
-	moveLance();		
+	moveLance(target);		
 	
 	// if the shield is offscreen, go forward
 	if (target.size < 50) {	
@@ -83,13 +86,11 @@ void acceptDefeat() {
 	
 }
 
-void moveLance() {
-			
-	set_servo_position(LANCE, 1020);
-	msleep(100);
-	set_servo_position(LANCE, 1080);
-	msleep(100);
-	
+void moveLance(Shield shield) {
+	int normalized = (int)(((double)shield.xCentroid / 160.0) * (LANCE_RANGE - shield.size)) + LANCE_MIN;
+	if(normalized < LANCE_MIN) normalized = LANCE_MIN;
+	else if(normalized > (LANCE_MIN + LANCE_RANGE)) normalized = LANCE_MIN + LANCE_RANGE;
+	set_servo_position(LANCE, normalized);
 }
 
 void avoid_border_left() {
