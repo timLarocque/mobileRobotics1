@@ -51,8 +51,8 @@ void approachShield() {
 NormalizedSpeed normalize(Shield target) {
 	
 	NormalizedSpeed temp;
-	temp.left = (int)(((double)target.xCentroid / 160.0) * 1000.0);
-	temp.right = (int)(1000 - (((double)target.xCentroid / 160.0) * 1000.0));
+	temp.left = (int)(((double)target.xCentroid / 160.0) * 500.0);
+	temp.right = (int)(500 - (((double)target.xCentroid / 160.0) * 500.0));
 		
 	return temp;
 
