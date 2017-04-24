@@ -40,18 +40,25 @@ void approachShield(Shield target) {
 	}
 }
 
-void hybridFight(Sheild target) {
+void hybridFight(Shield target) {
   NormalizedSpeed norm = normalize(target);
   if (target.size < 50) {
     mav(RMOTOR, 100);
     mav(LMOTOR, 100);
+  } else if (target.size >= 50){
+    mav(RMOTOR, norm.right);
+    mav(LMOTOR, norm.left);
   } else {
-
+    mav(LMOTOR, norm.right);
+    mav(RMOTOR, norm.left);
+    moveLance(target);
   }
 }
 
 // Normalizing Speed Function
-// ARGUMENTS:
+// ARGUMENTS: Shield structure
+//   RETURNS: A Normalized Speed Structure
+//   PURPOSE: Takes a Shield structure and allows for Braitenberg style speed
 NormalizedSpeed normalize(Shield target) {
 	NormalizedSpeed temp;
 	temp.left = (int)(((double)target.x / 160.0) * 500.0);
