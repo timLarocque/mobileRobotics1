@@ -7,16 +7,19 @@
 // defining all of the sensors
 #define LMOTOR 3
 #define RMOTOR 0
+
 #define SHIELD 8
 #define LANCE 1
+
 #define LHAT 1
 #define RHAT 0
+
 #define RED 0
 
 // Shield detection structure
 typedef struct {
-	int xCentroid;
-	int yCentroid;
+	int x;
+	int y;
 	int size;
 } Shield;
 
