@@ -8,7 +8,7 @@ Darin Beaudreau &
 Tim Larocque
 
 #### Team Velmer
-Victoria Albanese & 
+Victoria Albanese &
 Elmer Melendez
 
 ### Opportunity Statement
@@ -51,6 +51,3 @@ the opponent and position the lance to strike their shield.
 We will attach the shield to the limit sensor that when the opponent’s lance
 strikes the shield, it will trigger the limit sensor. This will allow us to
 determine when the round is over.
-
-### Our Tentative Work Plan
-![WorkPlan](/WorkPlan.png?raw=true "WorkPlan")
