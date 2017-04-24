@@ -65,7 +65,7 @@ void locateShieldHybridVE();
 // hybrid_td specific function declarations
 void attackShieldTD(Shield target);
 NormalizedSpeed normalizeHybridTD(Shield target);
-void moveLanceHybridTD();
+void moveLanceHybridTD(Shield target);
 void locateShieldHybridTD();
 
 #endif

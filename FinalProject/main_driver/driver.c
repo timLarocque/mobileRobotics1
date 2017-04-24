@@ -48,7 +48,7 @@ int joust(int color, int fightStyle) {
 		if (fightStyle == OFFENSIVE) moveLanceOffense();
 		if (fightStyle == DEFENSIVE) moveLanceDefense();
 		if (fightStyle == HYBRID_VE) moveLanceVE();
-		if (fightStyle == HYBRIF_TD) moveLanceTD();
+		if (fightStyle == HYBRIF_TD) moveLanceTD(target);
 
 		// fight the other bot appropriately
 		if (fightStyle == OFFENSIVE) approachShield(color);

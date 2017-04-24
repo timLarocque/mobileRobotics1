@@ -4,6 +4,9 @@
 
 #include "driver.h"
 
+#define LANCE_MIN 600
+#define LANCE_RANGE 800
+
 // call hybrid td normalize function
 // use braitenberg to aim robot at shield
 void attackShieldTD(Shield target) {
@@ -28,12 +31,11 @@ NormalizedSpeed normalizeHybridTD(Shield target) {
 
 // aim lance straight forward
 // shake it back and forth a bit 
-void moveLanceHybridTD() {
-				
-    set_servo_position(LANCE, 120);
-		msleep(100);
-		set_servo_position(LANCE, 80);
-		msleep(100);
+void moveLanceHybridTD(Shield target) {
+	int normalized = (int)(((double)target.x / 160.0) * (LANCE_RANGE - target.size)) + LANCE_MIN;
+	if(normalized < LANCE_MIN) normalized = LANCE_MIN;
+	else if(normalized > (LANCE_MIN + LANCE_RANGE)) normalized = LANCE_MIN + LANCE_RANGE;
+	set_servo_position(LANCE, normalized);
 
 }
 
