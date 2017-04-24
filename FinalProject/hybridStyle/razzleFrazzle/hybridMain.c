@@ -6,12 +6,24 @@
 
 int main() {
 	while(!black_button()) {
-		track_update();
-		
 		Shield target = findShield();
-		//target.xCentroid = track_x(RED, 0);
-		//target.yCentroid = track_y(RED, 0);
-		//target.size = track_size(RED, 0);
+		
+		// If the shield is bumped, commit sudoku.
+		/*if(digital(SHIELD)) {
+			acceptDefeat();
+			break;
+		}*/
+		
+		// Determine behavior based on how close the shield is.
+		if(target.size >= 300) {
+			avoidShield(target);
+		} else if(target.size >= 50) {
+			approachShield(target);
+		} else {
+			moveForward();
+		}
+		
+		moveLance(target);
 	}
 	
 	return 0;
