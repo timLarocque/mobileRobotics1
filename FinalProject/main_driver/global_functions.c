@@ -1,6 +1,6 @@
 // Created on Wed Apr 12 2017
 
-#include "pureStyle.h"
+#include "driver.h"
 
 int pickColor() {
 
@@ -22,7 +22,7 @@ int pickColor() {
 
 int pickFightingStyle() {
 
-	int fighting_style = -1;
+	int fightingStyle = -1;
 
 	printf("\nWhat fighting style should I use?\n");
 	printf("\tUp: offensive\n");
@@ -31,14 +31,14 @@ int pickFightingStyle() {
 	printf("\tRight: hybrid td\n");
 	printf("\n");
 
-	while (fighting_style = -1) {
-		if (up_button())    fight_style = OFFENSIVE;				
-		if (down_button())  fight_style = DEFENSIVE;				
-		if (left_button())  fight_style = HYBRID_VE;				
-		if (right_button()) fight_style = HYBRID_TD;				
+	while (fightingStyle == -1) {
+		if (up_button())    fightingStyle = OFFENSIVE;				
+		if (down_button())  fightingStyle = DEFENSIVE;				
+		if (left_button())  fightingStyle = HYBRID_VE;				
+		if (right_button()) fightingStyle = HYBRID_TD;				
 	}
 
-	return fighting_style;
+	return fightingStyle;
 
 }
 

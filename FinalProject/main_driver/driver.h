@@ -14,10 +14,10 @@
 #define RHAT 0
 
 // define globally useful variables
-#define GREEN 0
-#define RED 1
-#define OFFENSE 0
-#define DEFENSE 1
+#define GREEN 1
+#define RED 0
+#define OFFENSIVE 0
+#define DEFENSIVE 1
 #define HYBRID_VE 2
 #define HYBRID_TD 3
 #define FALSE 0
@@ -37,12 +37,13 @@ typedef struct {
 } NormalizedSpeed;
 
 // global function declarations
+int joust(int color, int fightStyle);
 Shield findShield(int color);
-void acceptDefeat();
+int pickColor();
+int pickFightingStyle();
+int acceptDefeat();
 void leftBorderControl();
 void rightBorderControl();
-int pickColor();
-int pickFightStyle();
 
 // offense specific function declarations
 void approachShield(Shield target);

@@ -12,7 +12,7 @@ int main() {
 	// get ready
 	int isJoustComplete = FALSE;
 	int color = pickColor();
-	int fightStyle = pickFightStyle();
+	int fightStyle = pickFightingStyle();
 
 	// get set
 	printf("Put me in the right corner of the arena, and press A to start.\n");
@@ -37,8 +37,8 @@ int joust(int color, int fightStyle) {
 	if (target.size < 50) {	
 		if (fightStyle == OFFENSIVE) locateShieldOffense();
 		if (fightStyle == DEFENSIVE) locateShieldDefense();
-		if (fightStyle == HYBRID_VE) locateShieldVE();
-		if (fightStyle == HYBRIF_TD) locateShieldTD();
+		if (fightStyle == HYBRID_VE) locateShieldHybridVE();
+		if (fightStyle == HYBRID_TD) locateShieldHybridTD();
 	}
 		
 	// otherwise... 
@@ -47,14 +47,14 @@ int joust(int color, int fightStyle) {
 		// move the lance appropriately
 		if (fightStyle == OFFENSIVE) moveLanceOffense();
 		if (fightStyle == DEFENSIVE) moveLanceDefense();
-		if (fightStyle == HYBRID_VE) moveLanceVE();
-		if (fightStyle == HYBRIF_TD) moveLanceTD(target);
+		if (fightStyle == HYBRID_VE) moveLanceHybridVE();
+		if (fightStyle == HYBRID_TD) moveLanceHybridTD(target);
 
 		// fight the other bot appropriately
-		if (fightStyle == OFFENSIVE) approachShield(color);
-		if (fightStyle == DEFENSIVE) avoidShield(color);
-		if (fightStyle == HYBRID_VE) attackShieldVE(color);
-		if (fightStyle == HYBRIF_TD) attackShieldTD(color);
+		if (fightStyle == OFFENSIVE) approachShield(target);
+		if (fightStyle == DEFENSIVE) avoidShield(target);
+		if (fightStyle == HYBRID_VE) attackShieldVE(target);
+		if (fightStyle == HYBRID_TD) attackShieldTD(target);
 
 	}
 

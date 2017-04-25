@@ -8,8 +8,8 @@
 // use braitenberg to aim robot at shield
 void attackShieldVE(Shield target) {
 
-  NormalizedSpeed norm;
-	norm = normalize(target);
+	NormalizedSpeed norm;
+	norm = normalizeHybridVE(target);
 	mav(LMOTOR, norm.left);
 	mav(RMOTOR, norm.right);
 												
@@ -19,7 +19,7 @@ void attackShieldVE(Shield target) {
 // aims the robot towards the left of the opposing shield
 NormalizedSpeed normalizeHybridVE(Shield target) {
 				
-  NormalizedSpeed speed;
+	NormalizedSpeed speed;
 	speed.left = (int)(((double)target.xCentroid / 140.0) * 250.0);
 	speed.right = (int)(500 - (((double)target.xCentroid / 140.0) * 250.0));
 	return speed;

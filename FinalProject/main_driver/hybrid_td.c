@@ -12,7 +12,7 @@
 void attackShieldTD(Shield target) {
   
 	NormalizedSpeed norm;
-	norm = normalize(target);
+	norm = normalizeHybridTD(target);
 	mav(LMOTOR, norm.left);
 	mav(RMOTOR, norm.right);
 								
@@ -32,7 +32,7 @@ NormalizedSpeed normalizeHybridTD(Shield target) {
 // aim lance straight forward
 // shake it back and forth a bit 
 void moveLanceHybridTD(Shield target) {
-	int normalized = (int)(((double)target.x / 160.0) * (LANCE_RANGE - target.size)) + LANCE_MIN;
+	int normalized = (int)(((double)target.xCentroid / 160.0) * (LANCE_RANGE - target.size)) + LANCE_MIN;
 	if(normalized < LANCE_MIN) normalized = LANCE_MIN;
 	else if(normalized > (LANCE_MIN + LANCE_RANGE)) normalized = LANCE_MIN + LANCE_RANGE;
 	set_servo_position(LANCE, normalized);

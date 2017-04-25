@@ -1,6 +1,6 @@
 
 #ifndef DEFENSIVE_H
-#ifndef DEFENSIVE_H
+#define DEFENSIVE_H
 
 #include "driver.h"
 
@@ -9,7 +9,7 @@
 void avoidShield(Shield target) {
 				
   NormalizedSpeed norm;
-	norm = normalize(target);
+	norm = normalizeDefense(target);
 	mav(LMOTOR, norm.left);
 	mav(RMOTOR, norm.right);
 																																				

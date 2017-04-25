@@ -9,7 +9,7 @@
 void approachShield(Shield target) {
   
 	NormalizedSpeed norm;
-	norm = normalize(target);
+	norm = normalizeOffense(target);
 	mav(LMOTOR, norm.left);
 	mav(RMOTOR, norm.right);
 								
@@ -30,10 +30,10 @@ NormalizedSpeed normalizeOffense(Shield target) {
 // shake it back and forth a bit 
 void moveLanceOffense() {
 				
-    set_servo_position(LANCE, 1050);
-		msleep(100);
-		set_servo_position(LANCE, 950);
-		msleep(100);
+    set_servo_position(LANCE, 1020);
+	msleep(100);
+	set_servo_position(LANCE, 980);
+	msleep(100);
 
 }
 
