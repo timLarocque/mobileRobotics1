@@ -1,5 +1,5 @@
 
-// What I did
+## What I did
 
 I made a main driver with a menu, so that a user can select which color
 a robot will fight, and which fighting style it will use.  It then fights
@@ -8,7 +8,7 @@ us from needing to continually download new code.  A nice side effect of
 this is that now, we can refactor a lot of code, and only have one main!
 
 
-// How it works
+## How it works
 
 After the after the color/fighting style is chosen, the robot waits for the
 user to press A to start fighting so that there is time to position the robot
@@ -43,7 +43,7 @@ the content of the functions the same as the offensive ones for a "clean" slate
 to work with.
 
 
-// Locate shield
+## Locate shield
 
 This function determines what behavior the robot will have if it does not detect
 the shield.  The default behavior is to move straight.  However, there doesn't
@@ -52,13 +52,13 @@ function for each style.  Right now, they are all the same, and if they stay tha
 way, they can be refactored later.
 
 
-// Move lance
+## Move lance
 
 This function determines how the lance moves.  I know that this is something that
 will definitely be different for each style.  
 
 
-// React to shield
+## React to shield
 
 This function determines what behavior the robot will have when it does see the
 shield.  Funnily, this seems like it would be something that would vary from style
@@ -68,7 +68,7 @@ hybrid_ve (for the moment), this function is uniform.  If they stay that way, th
 can be refactored later.
 
 
-// Normalize
+## Normalize
 
 This function gives the "react to shield" function a normalized value to give to
 the motors in accordance to whatever braitenberg behavior is appropriate to the
@@ -76,7 +76,7 @@ fighting style.  As alluded to above, this is obviously something that must vary
 for each style.
 
 
-// What happens now
+## What happens now
 
 I haven't tested the driver yet because it's late and I have other homework to
 get to and I don't feel like testing it right now, but it should theoretically,
