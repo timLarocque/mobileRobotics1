@@ -4,7 +4,7 @@
 
 #include "driver.h"
 
-#define LANCE_MIN 100
+#define LANCE_MIN 600
 #define LANCE_RANGE 800
 
 // call hybrid td normalize function
