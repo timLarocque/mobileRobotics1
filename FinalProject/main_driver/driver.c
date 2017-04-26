@@ -60,8 +60,8 @@ int joust(int color, int fightStyle) {
 
 	// keep robot within borders, check for defeat
 	if (digital(SHIELD) == 1) isComplete = acceptDefeat();
-	if (analog10(LHAT) > 500) leftBorderControl();
-	if (analog10(RHAT) > 500) rightBorderControl();
+	//if (analog10(LHAT) > 500) leftBorderControl();
+	//if (analog10(RHAT) > 500) rightBorderControl();
 				
 	// return if the battle is complete
 	return isComplete;

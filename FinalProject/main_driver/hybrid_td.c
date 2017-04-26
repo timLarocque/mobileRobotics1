@@ -4,7 +4,7 @@
 
 #include "driver.h"
 
-#define LANCE_MIN 600
+#define LANCE_MIN 100
 #define LANCE_RANGE 800
 
 // call hybrid td normalize function
@@ -13,9 +13,14 @@ void attackShieldTD(Shield target) {
   
 	NormalizedSpeed norm;
 	norm = normalizeHybridTD(target);
-	mav(LMOTOR, norm.left);
-	mav(RMOTOR, norm.right);
-								
+	
+	if(target.size >= 300) {
+		mav(LMOTOR, norm.right);
+		mav(RMOTOR, norm.left);
+	} else {
+		mav(LMOTOR, norm.left);
+		mav(RMOTOR, norm.right);
+	}
 }
 
 // initialize and return speed structure
