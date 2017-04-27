@@ -15,6 +15,10 @@ void attackShieldTD(Shield target) {
 	norm = normalizeHybridTD(target);
 	
 	if(target.size >= 300) {
+		if(target.xCentroid < 80) {
+			norm.left = -norm.left;
+			norm.right = -norm.right;
+		}
 		mav(LMOTOR, norm.right);
 		mav(RMOTOR, norm.left);
 	} else {
@@ -33,15 +37,12 @@ NormalizedSpeed normalizeHybridTD(Shield target) {
   return speed;
 										
 }
-
-// aim lance straight forward
-// shake it back and forth a bit 
+ 
 void moveLanceHybridTD(Shield target) {
-	int normalized = (int)(((double)target.xCentroid / 160.0) * (LANCE_RANGE - target.size)) + LANCE_MIN;
+	int normalized = (int)(((double)target.xCentroid / 160.0) * (LANCE_RANGE/* - target.size*/)) + LANCE_MIN;
 	if(normalized < LANCE_MIN) normalized = LANCE_MIN;
 	else if(normalized > (LANCE_MIN + LANCE_RANGE)) normalized = LANCE_MIN + LANCE_RANGE;
 	set_servo_position(LANCE, normalized);
-
 }
 
 // if you can't find the shield
