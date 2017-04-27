@@ -20,8 +20,8 @@ void attackShieldVE(Shield target) {
 NormalizedSpeed normalizeHybridVE(Shield target) {
 				
 	NormalizedSpeed speed;
-	speed.left = (int)(((double)target.xCentroid / 140.0) * 250.0);
-	speed.right = (int)(500 - (((double)target.xCentroid / 140.0) * 250.0));
+	speed.left = (int)(((double)target.xCentroid / 40.0) * 250.0);
+	speed.right = (int)(500 - (((double)target.xCentroid / 40.0) * 250.0));
 	return speed;
 								
 }
@@ -30,7 +30,7 @@ NormalizedSpeed normalizeHybridVE(Shield target) {
 // don't move it at all
 void moveLanceHybridVE() {
 
-	set_servo_position(LANCE, 600);
+	set_servo_position(LANCE, 1250);
 				
 }
 
