@@ -16,11 +16,12 @@ void attackShieldTD(Shield target) {
 	
 	if(target.size >= 300) {
 		if(target.xCentroid < 80) {
-			norm.left = -norm.left;
-			norm.right = -norm.right;
+			mav(LMOTOR, norm.left);
+			mav(RMOTOR, norm.right);
+		} else {
+			mav(LMOTOR, norm.right);
+			mav(RMOTOR, norm.left);
 		}
-		mav(LMOTOR, norm.right);
-		mav(RMOTOR, norm.left);
 	} else {
 		mav(LMOTOR, norm.left);
 		mav(RMOTOR, norm.right);
