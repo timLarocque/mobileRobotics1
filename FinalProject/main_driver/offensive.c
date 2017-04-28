@@ -1,4 +1,3 @@
-
 #ifndef OFFENSIVE_H
 #define OFFENSIVE_H
 

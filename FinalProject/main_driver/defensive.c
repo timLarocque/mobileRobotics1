@@ -1,4 +1,3 @@
-
 #ifndef DEFENSIVE_H
 #define DEFENSIVE_H
 

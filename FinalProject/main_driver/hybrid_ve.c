@@ -1,4 +1,3 @@
-
 #ifndef HYBRID_VE_H
 #define HYBRID_VE_H
 

@@ -1,11 +1,10 @@
-
 #ifndef HYBRID_TD_H
 #define HYBRID_TD_H
 
 #include "driver.h"
 
-#define LANCE_MIN 600
-#define LANCE_RANGE 800
+#define LANCE_MIN 650
+#define LANCE_RANGE 850
 
 // call hybrid td normalize function
 // use braitenberg to aim robot at shield
@@ -14,7 +13,7 @@ void attackShieldTD(Shield target) {
 	NormalizedSpeed norm;
 	norm = normalizeHybridTD(target);
 	
-	if(target.size >= 300) {
+	if(target.size >= 250) {
 		if(target.xCentroid < 80) {
 			mav(LMOTOR, norm.left);
 			mav(RMOTOR, norm.right);
@@ -40,7 +39,7 @@ NormalizedSpeed normalizeHybridTD(Shield target) {
 }
  
 void moveLanceHybridTD(Shield target) {
-	int normalized = (int)(((double)target.xCentroid / 160.0) * (LANCE_RANGE/* - target.size*/)) + LANCE_MIN;
+	int normalized = (int)(((double)target.xCentroid / 160.0) * LANCE_RANGE) + LANCE_MIN;
 	if(normalized < LANCE_MIN) normalized = LANCE_MIN;
 	else if(normalized > (LANCE_MIN + LANCE_RANGE)) normalized = LANCE_MIN + LANCE_RANGE;
 	set_servo_position(LANCE, normalized);
@@ -48,11 +47,9 @@ void moveLanceHybridTD(Shield target) {
 
 // if you can't find the shield
 // just keep moving forward
-void locateShieldHybridTD() {
-				
-  mav(RMOTOR, 100);
-	mav(LMOTOR, 100);
-
+void locateShieldHybridTD() {		
+	mav(RMOTOR, 200);
+	mav(LMOTOR, 200);
 }
 
 #endif // for HYBRID_TD_H
